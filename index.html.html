@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>调配属于你的情感配方 | 可比克简薯片</title>
+<style>
+:root {
+--page-bg: #fdf6f0;
+--card-bg: #ffffff;
+--text-dark: #3d2b1f;
+--text-light: #6b5a4e;
+--accent: #e8833a;
+--accent-2: #f5a65b;
+--btn-primary: #e8833a;
+--btn-hover: #c9702e;
+--border-soft: #ede4d8;
+--shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.06);
+--shadow-card: 0 8px 32px rgba(0, 0, 0, 0.08);
+--radius-lg: 20px;
+--radius-md: 14px;
+--radius-sm: 10px;
+--font-title: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+--font-body: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+--transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: var(--font-body);
+background: linear-gradient(180deg, #fef9f3 0%, #fdf3e7 30%, #fef7f0 60%, #fdf6f0 100%);
+min-height: 100vh;
+min-height: 100dvh;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+padding: 0;
+-webkit-tap-highlight-color: transparent;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+background-attachment: fixed;
+}
+
+.app-container {
+width: 100%;
+max-width: 450px;
+min-height: 100vh;
+min-height: 100dvh;
+position: relative;
+overflow-x: hidden;
+display: flex;
+flex-direction: column;
+}
+
+/* 顶部品牌条 */
+.brand-bar {
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 14px 20px 8px;
+gap: 8px;
+flex-shrink: 0;
+}
+
+.brand-logo-icon {
+width: 36px;
+height: 36px;
+background: var(--accent);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: #fff;
+font-weight: 700;
+font-size: 14px;
+letter-spacing: -1px;
+flex-shrink: 0;
+}
+
+.brand-text {
+font-family: var(--font-title);
+font-weight: 700;
+font-size: 15px;
+color: #5c3d2e;
+letter-spacing: 0.5px;
+}
+
+.brand-text span {
+color: var(--accent);
+}
+
+/* 页面容器 */
+.page {
+display: none;
+flex-direction: column;
+flex: 1;
+padding: 0 18px 24px;
+animation: fadeSlideIn 0.4s ease forwards;
+}
+
+.page.active {
+display: flex;
+}
+
+@keyframes fadeSlideIn {
+from {
+opacity: 0;
+transform: translateY(18px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@keyframes pulse {
+0%,
+100% {
+transform: scale(1);
+}
+50% {
+transform: scale(1.04);
+}
+}
+
+@keyframes floatUp {
+0% {
+opacity: 0;
+transform: translateY(30px);
+}
+100% {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@keyframes shimmer {
+0% {
+background-position: -200% center;
+}
+100% {
+background-position: 200% center;
+}
+}
+
+@keyframes popIn {
+0% {
+transform: scale(0.3);
+opacity: 0;
+}
+70% {
+transform: scale(1.08);
+opacity: 1;
+}
+100% {
+transform: scale(1);
+opacity: 1;
+}
+}
+
+@keyframes confettiDrop {
+0% {
+transform: translateY(-60px) rotate(0deg);
+opacity: 1;
+}
+100% {
+transform: translateY(105vh) rotate(720deg);
+opacity: 0;
+}
+}
+
+/* 开始页 */
+.start-page {
+align-items: center;
+justify-content: center;
+text-align: center;
+gap: 18px;
+}
+
+.start-illustration {
+width: 160px;
+height: 160px;
+border-radius: 50%;
+background: radial-gradient(circle at 40% 35%, #fff8f0 0%, #fde4cc 40%, #f5c89b 100%);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 80px;
+animation: pulse 3s ease-in-out infinite;
+box-shadow: 0 12px 40px rgba(232, 131, 58, 0.2);
+position: relative;
+}
+
+.start-illustration::after {
+content: '';
+position: absolute;
+inset: -8px;
+border-radius: 50%;
+border: 2px dashed rgba(232, 131, 58, 0.3);
+animation: pulse 3s ease-in-out infinite 0.5s;
+}
+
+.start-title {
+font-family: var(--font-title);
+font-size: 26px;
+font-weight: 800;
+color: #4a2c1a;
+letter-spacing: 1px;
+line-height: 1.3;
+}
+
+.start-title .highlight {
+color: var(--accent);
+position: relative;
+}
+
+.start-subtitle {
+font-size: 14px;
+color: #8b6f5e;
+line-height: 1.6;
+max-width: 280px;
+}
+
+.btn-start {
+display: inline-block;
+padding: 15px 48px;
+background: linear-gradient(135deg, #e8833a 0%, #f5a65b 100%);
+color: #fff;
+font-size: 17px;
+font-weight: 700;
+border: none;
+border-radius: 50px;
+cursor: pointer;
+letter-spacing: 1.5px;
+box-shadow: 0 8px 24px rgba(232, 131, 58, 0.35);
+transition: var(--transition);
+position: relative;
+overflow: hidden;
+font-family: var(--font-title);
+}
+
+.btn-start:active {
+transform: scale(0.95);
+box-shadow: 0 4px 12px rgba(232, 131, 58, 0.3);
+}
+
+.btn-start::after {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+animation: shimmer 2s infinite;
+}
+
+/* 测试页 */
+.test-page {
+gap: 8px;
+}
+
+.progress-wrap {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 4px 0 8px;
+flex-shrink: 0;
+}
+
+.progress-bar-outer {
+flex: 1;
+height: 8px;
+background: #ede4d8;
+border-radius: 10px;
+overflow: hidden;
+}
+
+.progress-bar-inner {
+height: 100%;
+background: linear-gradient(90deg, #e8833a, #f5a65b);
+border-radius: 10px;
+transition: width 0.4s ease;
+}
+
+.progress-text {
+font-size: 13px;
+color: #8b6f5e;
+font-weight: 600;
+white-space: nowrap;
+min-width: 40px;
+text-align: right;
+}
+
+.question-card {
+background: var(--card-bg);
+border-radius: var(--radius-lg);
+padding: 22px 18px 20px;
+box-shadow: var(--shadow-card);
+flex-shrink: 0;
+transition: var(--transition);
+border: 1px solid var(--border-soft);
+}
+
+.question-label {
+display: inline-block;
+background: #fef0e4;
+color: #c9702e;
+font-size: 12px;
+font-weight: 700;
+padding: 4px 12px;
+border-radius: 20px;
+margin-bottom: 10px;
+letter-spacing: 0.5px;
+}
+
+.question-label.q9-label {
+background: #fff0e8;
+color: #d4783c;
+}
+
+.question-title {
+font-family: var(--font-title);
+font-size: 17px;
+font-weight: 700;
+color: #3d2b1f;
+line-height: 1.5;
+margin-bottom: 16px;
+}
+
+.options-list {
+display: flex;
+flex-direction: column;
+gap: 9px;
+}
+
+.option-btn {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 14px 15px;
+border-radius: var(--radius-sm);
+border: 2px solid #ede4d8;
+background: #fefcf9;
+cursor: pointer;
+transition: var(--transition);
+font-size: 14.5px;
+color: #4a3528;
+text-align: left;
+font-family: var(--font-body);
+line-height: 1.4;
+-webkit-tap-highlight-color: transparent;
+user-select: none;
+position: relative;
+}
+
+.option-btn:active {
+transform: scale(0.98);
+}
+
+.option-btn.selected {
+border-color: #e8833a;
+background: #fef7f0;
+box-shadow: 0 0 0 4px rgba(232, 131, 58, 0.08);
+font-weight: 600;
+}
+
+.option-letter {
+width: 32px;
+height: 32px;
+border-radius: 50%;
+background: #f5f0ea;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: 700;
+font-size: 14px;
+color: #8b6f5e;
+flex-shrink: 0;
+transition: var(--transition);
+}
+
+.option-btn.selected .option-letter {
+background: #e8833a;
+color: #fff;
+}
+
+.option-text {
+flex: 1;
+}
+
+/* 多选标记 */
+.option-btn.multi-selected {
+border-color: #e8833a;
+background: #fef7f0;
+box-shadow: 0 0 0 4px rgba(232, 131, 58, 0.08);
+font-weight: 600;
+}
+
+.option-btn.multi-selected .option-letter {
+background: #e8833a;
+color: #fff;
+}
+
+.multi-hint {
+font-size: 12px;
+color: #c9702e;
+text-align: center;
+margin-top: 6px;
+font-weight: 500;
+}
+
+.btn-next-wrap {
+display: flex;
+gap: 10px;
+flex-shrink: 0;
+margin-top: 4px;
+}
+
+.btn-nav {
+flex: 1;
+padding: 14px;
+border-radius: 50px;
+font-size: 16px;
+font-weight: 700;
+cursor: pointer;
+border: none;
+letter-spacing: 0.5px;
+transition: var(--transition);
+font-family: var(--font-title);
+text-align: center;
+}
+
+.btn-prev {
+background: #f5f0ea;
+color: #6b5a4e;
+flex: 0.4;
+}
+
+.btn-next {
+background: linear-gradient(135deg, #e8833a, #f5a65b);
+color: #fff;
+flex: 0.6;
+box-shadow: 0 4px 16px rgba(232, 131, 58, 0.3);
+}
+
+.btn-next:disabled {
+opacity: 0.4;
+pointer-events: none;
+box-shadow: none;
+}
+
+.btn-nav:active {
+transform: scale(0.95);
+}
+
+/* 结果页 */
+.result-page {
+align-items: center;
+gap: 14px;
+padding-bottom: 40px;
+animation: floatUp 0.6s ease forwards;
+}
+
+.result-header {
+text-align: center;
+width: 100%;
+}
+
+.result-badge {
+display: inline-block;
+background: #fef0e4;
+color: #c9702e;
+font-size: 13px;
+font-weight: 700;
+padding: 5px 14px;
+border-radius: 20px;
+letter-spacing: 0.5px;
+margin-bottom: 6px;
+}
+
+.result-animal-circle {
+width: 130px;
+height: 130px;
+border-radius: 50%;
+margin: 8px auto;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 75px;
+animation: popIn 0.6s ease forwards;
+position: relative;
+box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+}
+
+.result-animal-circle::after {
+content: '';
+position: absolute;
+inset: -6px;
+border-radius: 50%;
+border: 3px dashed rgba(255, 255, 255, 0.5);
+animation: pulse 2.5s ease-in-out infinite;
+}
+
+.result-label-name {
+font-family: var(--font-title);
+font-size: 24px;
+font-weight: 800;
+color: #3d2b1f;
+letter-spacing: 1px;
+margin: 4px 0;
+}
+
+.result-flavor {
+font-size: 14px;
+color: #8b6f5e;
+font-weight: 500;
+letter-spacing: 0.5px;
+}
+
+.result-desc-card {
+background: #fff;
+border-radius: var(--radius-lg);
+padding: 18px 16px;
+width: 100%;
+text-align: center;
+box-shadow: var(--shadow-soft);
+border: 1px solid var(--border-soft);
+line-height: 1.6;
+font-size: 14px;
+color: #5c3d2e;
+}
+
+.result-desc-card strong {
+color: #3d2b1f;
+}
+
+/* 身份编码区 */
+.id-card {
+background: #fff;
+border-radius: var(--radius-lg);
+padding: 18px 16px;
+width: 100%;
+text-align: center;
+box-shadow: var(--shadow-soft);
+border: 2px solid #ede4d8;
+position: relative;
+overflow: hidden;
+}
+
+.id-card::before {
+content: '';
+position: absolute;
+top: -30px;
+right: -30px;
+width: 80px;
+height: 80px;
+background: rgba(232, 131, 58, 0.06);
+border-radius: 50%;
+}
+
+.id-label {
+font-size: 13px;
+color: #8b6f5e;
+font-weight: 600;
+letter-spacing: 1px;
+margin-bottom: 4px;
+}
+
+.id-code {
+font-family: 'Courier New', 'SF Mono', 'Menlo', monospace;
+font-size: 18px;
+font-weight: 800;
+color: #3d2b1f;
+letter-spacing: 2px;
+word-break: break-all;
+}
+
+.id-note {
+font-size: 11px;
+color: #a89080;
+margin-top: 8px;
+}
+
+.btn-row {
+display: flex;
+gap: 10px;
+width: 100%;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.btn-retry {
+padding: 12px 28px;
+background: #fff;
+border: 2px solid #ede4d8;
+border-radius: 50px;
+font-size: 15px;
+font-weight: 600;
+cursor: pointer;
+color: #5c3d2e;
+transition: var(--transition);
+font-family: var(--font-title);
+letter-spacing: 0.5px;
+}
+
+.btn-retry:active {
+background: #fef7f0;
+border-color: #e8833a;
+}
+
+/* 纸屑 */
+.confetti-container {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+z-index: 999;
+overflow: hidden;
+}
+
+.confetti-piece {
+position: absolute;
+width: 10px;
+height: 10px;
+border-radius: 3px;
+animation: confettiDrop 3s linear forwards;
+}
+
+/* 响应式微调 */
+@media (max-width: 360px) {
+.question-title {
+font-size: 15px;
+}
+.option-btn {
+font-size: 13px;
+padding: 12px 10px;
+}
+.start-title {
+font-size: 22px;
+}
+}
+
+@media (min-width: 420px) {
+.app-container {
+border-left: 1px solid #ede4d8;
+border-right: 1px solid #ede4d8;
+}
+}
+
+/* Toast */
+.toast {
+position: fixed;
+top: 20px;
+left: 50%;
+transform: translateX(-50%);
+background: #3d2b1f;
+color: #fff;
+padding: 10px 20px;
+border-radius: 30px;
+font-size: 13px;
+font-weight: 600;
+z-index: 1000;
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.3s ease;
+letter-spacing: 0.5px;
+}
+
+.toast.show {
+opacity: 1;
+}
+</style>
+</head>
+<body>
+<div class="app-container" id="appContainer">
+<!-- 品牌条 -->
+<div class="brand-bar">
+<div class="brand-logo-icon">可</div>
+<div class="brand-text">可比克<span>简薯片</span></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- 纸屑容器 -->
+<div class="confetti-container" id="confettiContainer"></div>
+
+<!-- ==================== 开始页 ==================== -->
+<div class="page active start-page" id="pageStart">
+<div class="start-illustration">🥔</div>  <!-- ✅ 改为土豆/薯片图标 -->
+<div class="start-title">调配属于你的<br><span class="highlight">情感配方</span></div>
+<div class="start-subtitle">做了那么多性格测试，<br>快来测测<span style="color:#e8833a;font-weight:600;">薯于你和他（她）</span>的情感配方吧~</div>
+<button class="btn-start" id="btnStart" onclick="startTest()">💛 开始测试</button>
+</div>
+
+<!-- ==================== 测试页 ==================== -->
+<div class="page test-page" id="pageTest">
+<div class="progress-wrap">
+<div class="progress-bar-outer">
+<div class="progress-bar-inner" id="progressBar" style="width:0%"></div>
+</div>
+<span class="progress-text" id="progressText">1/9</span>
+</div>
+<div class="question-card" id="questionCard">
+<div class="question-label" id="questionLabel">第1题</div>
+<div class="question-title" id="questionTitle"></div>
+<div class="options-list" id="optionsList"></div>
+<div class="multi-hint" id="multiHint" style="display:none;">⚠️ 请选择恰好 <strong>3项</strong> 情感小料</div>
+</div>
+<div class="btn-next-wrap">
+<button class="btn-nav btn-prev" id="btnPrev" onclick="prevQuestion()" style="display:none;">← 上一题</button>
+<button class="btn-nav btn-next" id="btnNext" onclick="nextQuestion()" disabled>下一题 →</button>
+</div>
+</div>
+
+<!-- ==================== 结果页 ==================== -->
+<div class="page result-page" id="pageResult">
+<div class="result-header">
+<div class="result-badge" id="resultBadge">情感配方</div>
+<div class="result-animal-circle" id="resultAnimalCircle">🦊</div>
+<div class="result-label-name" id="resultLabelName"></div>
+<div class="result-flavor" id="resultFlavor"></div>
+</div>
+<div class="result-desc-card" id="resultDescCard"></div>
+<div class="id-card" id="idCard">
+<div class="id-label">🎫 简爱身份编码</div>
+<div class="id-code" id="idCode"></div>
+<div class="id-note">凭编码参与线下活动</div>
+</div>
+<div class="btn-row">
+<button class="btn-retry" onclick="retryTest()">🔄 重新测试</button>
+</div>
+</div>
+</div>
+
+<script>
+(function() {
+// ==================== 题目数据（完全依照文档） ====================
+const question1 = {
+id: 1,
+title: '情感基底·选择关系（必选）',
+options: [
+{ letter: 'A', text: '恋人' },
+{ letter: 'B', text: '兄弟' },
+{ letter: 'C', text: '闺蜜' },
+{ letter: 'D', text: '朋友' },
+{ letter: 'E', text: '亲人' },
+{ letter: 'F', text: '师生' },
+],
+isBaseQuestion: true,
+};
+
+const baseQuestionsData = {
+'A': {
+baseName: '恋人',
+questions: [
+{ id: 2, title: '第2题：相处氛围感，你更偏向？', options: [{ letter: 'A', text: '时刻黏在一起，享受二人独处时光' }, { letter: 'B', text: '保持适当距离，彼此独立又相互牵挂' }, { letter: 'C', text: '热闹互动不停，日常充满欢声笑语' }, { letter: 'D', text: '安静相伴无言，一个眼神就能懂彼此' }] },
+{ id: 3, title: '第3题：对方情绪低落时，你会？', options: [{ letter: 'A', text: '立刻陪伴身边，温柔安抚排解情绪' }, { letter: 'B', text: '理性分析问题，帮对方找到解决办法' }, { letter: 'C', text: '用搞笑方式逗乐，转移对方负面情绪' }, { letter: 'D', text: '默默守在一旁，给对方足够独处空间' }] },
+{ id: 4, title: '第4题：两人产生小矛盾时，你们的状态是？', options: [{ letter: 'A', text: '主动低头和解，绝不冷战过夜' }, { letter: 'B', text: '冷静沟通梳理，找到问题根源' }, { letter: 'C', text: '打打闹闹消气，吵完依旧亲密' }, { letter: 'D', text: '彼此心照不宣，不用刻意道歉和好' }] },
+{ id: 5, title: '第5题：你理想中的恋爱日常是？', options: [{ letter: 'A', text: '三餐四季相伴，平淡温暖最珍贵' }, { letter: 'B', text: '一起成长进步，成为更好的彼此' }, { letter: 'C', text: '充满惊喜浪漫，永远有新鲜感' }, { letter: 'D', text: '轻松自在无压，不用刻意伪装自己' }] },
+{ id: 6, title: '第6题：对方做什么事会让你格外心动？', options: [{ letter: 'A', text: '细节里处处惦记，把你放在心上' }, { letter: 'B', text: '遇到困难时，坚定站在你身边守护' }, { letter: 'C', text: '毫无保留偏爱，满眼都是你的存在' }, { letter: 'D', text: '懂你的欲言又止，包容你的小脾气' }] },
+{ id: 7, title: '第7题：你们对待彼此的秘密，态度是？', options: [{ letter: 'A', text: '毫无保留分享，彼此没有任何隐瞒' }, { letter: 'B', text: '尊重对方隐私，不强迫追问不打探' }, { letter: 'C', text: '重要事情坦诚，小事可以随性一点' }, { letter: 'D', text: '互相信任兜底，知道对方不会欺骗自己' }] },
+{ id: 8, title: '第8题：你觉得爱情里最不可或缺的是？', options: [{ letter: 'A', text: '热烈的爱意与双向奔赴' }, { letter: 'B', text: '长久的陪伴与安稳归属感' }, { letter: 'C', text: '十足的默契与灵魂共鸣' }, { letter: 'D', text: '彼此的包容与情绪价值' }] },
+],
+},
+'B': {
+baseName: '兄弟',
+questions: [
+{ id: 2, title: '第2题：和兄弟相处，最舒服的状态是？', options: [{ letter: 'A', text: '随叫随到，有事二话不说帮忙' }, { letter: 'B', text: '平时各忙各的，见面依旧无话不谈' }, { letter: 'C', text: '一起疯玩打闹，永远不缺共同乐趣' }, { letter: 'D', text: '互相吐槽调侃，相处毫无拘束感' }] },
+{ id: 3, title: '第3题：兄弟遇到难处，你会？', options: [{ letter: 'A', text: '立刻出面撑腰，全力帮他解决问题' }, { letter: 'B', text: '耐心听他倾诉，给足安慰与鼓励' }, { letter: 'C', text: '陪他喝酒解压，用行动陪他度过' }, { letter: 'D', text: '给出实用建议，让他自己做主抉择' }] },
+{ id: 4, title: '第4题：和兄弟产生分歧，你会？', options: [{ letter: 'A', text: '直接说开，不藏着掖着不记仇' }, { letter: 'B', text: '互相让步妥协，不影响兄弟情谊' }, { letter: 'C', text: '打打闹闹翻篇，从来不会往心里去' }, { letter: 'D', text: '尊重彼此想法，求同存异继续相处' }] },
+{ id: 5, title: '第5题：你们的日常相处模式更多是？', options: [{ letter: 'A', text: '默契搭档，做什么都能配合默契' }, { letter: 'B', text: '快乐搭子，吃喝玩乐永远在一起' }, { letter: 'C', text: '互相扶持，低谷时彼此拉一把' }, { letter: 'D', text: '随性相处，不用刻意维护感情' }] },
+{ id: 6, title: '第6题：你最看重兄弟身上的什么特质？', options: [{ letter: 'A', text: '靠谱忠诚，值得百分百信任' }, { letter: 'B', text: '开朗有趣，相处起来轻松快乐' }, { letter: 'C', text: '讲义气重情义，关键时刻不掉链子' }, { letter: 'D', text: '包容大度，从不计较小事得失' }] },
+{ id: 7, title: '第7题：许久不见兄弟，再见面时会？', options: [{ letter: 'A', text: '热情寒暄，分享彼此近期生活' }, { letter: 'B', text: '无需多言，依旧和从前一样亲密' }, { letter: 'C', text: '相约聚会，找回曾经打闹的快乐' }, { letter: 'D', text: '默默陪伴，简单相处就很舒心' }] },
+{ id: 8, title: '第8题：你希望和兄弟的关系一直？', options: [{ letter: 'A', text: '并肩同行，成为彼此最坚实的后盾' }, { letter: 'B', text: '轻松自在，永远没有矛盾与隔阂' }, { letter: 'C', text: '长久稳固，不管多久都不会疏远' }, { letter: 'D', text: '快乐相伴，一辈子都是最佳损友' }] },
+],
+},
+'C': {
+baseName: '闺蜜',
+questions: [
+{ id: 2, title: '第2题：和闺蜜相处，最舒服的状态是？', options: [{ letter: 'A', text: '随时分享日常，大事小事都想报备' }, { letter: 'B', text: '平时各自忙碌，见面就能聊个不停' }, { letter: 'C', text: '一起逛街拍照，永远有共同小爱好' }, { letter: 'D', text: '互相吐槽心事，不用伪装坚强自己' }] },
+{ id: 3, title: '第3题：闺蜜心情不好，你会？', options: [{ letter: 'A', text: '第一时间陪伴，耐心听她吐槽所有' }, { letter: 'B', text: '暖心安慰开导，帮她走出负面情绪' }, { letter: 'C', text: '带她吃喝玩乐，用快乐冲淡不开心' }, { letter: 'D', text: '默默陪在身边，给她足够的安全感' }] },
+{ id: 4, title: '第4题：和闺蜜闹小别扭，你会？', options: [{ letter: 'A', text: '主动示弱和好，不想影响彼此感情' }, { letter: 'B', text: '好好沟通解释，把误会说清楚就好' }, { letter: 'C', text: '互相撒娇原谅，闺蜜没有隔夜仇' }, { letter: 'D', text: '心照不宣释怀，彼此都懂对方心意' }] },
+{ id: 5, title: '第5题：你们的日常相处模式更多是？', options: [{ letter: 'A', text: '双向宠溺陪伴，事事都想着对方' }, { letter: 'B', text: '快乐搭子，吃喝玩乐永远同频' }, { letter: 'C', text: '互相撑腰守护，做彼此的底气' }, { letter: 'D', text: '灵魂知己，懂对方的所有小心思' }] },
+{ id: 6, title: '第6题：你最看重闺蜜身上的什么特质？', options: [{ letter: 'A', text: '温柔真诚，对自己全心全意' }, { letter: 'B', text: '有趣合拍，相处起来永远不无聊' }, { letter: 'C', text: '靠谱贴心，永远站在自己这边' }, { letter: 'D', text: '包容理解，接纳自己的所有不完美' }] },
+{ id: 7, title: '第7题：许久不见闺蜜，再见面时会？', options: [{ letter: 'A', text: '紧紧拥抱贴贴，分享所有新鲜事' }, { letter: 'B', text: '毫无陌生感，依旧亲密无话不谈' }, { letter: 'C', text: '相约精致约会，重拾专属美好时光' }, { letter: 'D', text: '安静相伴聊天，简单相处就很温暖' }] },
+{ id: 8, title: '第8题：你希望和闺蜜的关系一直？', options: [{ letter: 'A', text: '双向奔赴，一辈子互相陪伴' }, { letter: 'B', text: '轻松治愈，永远是彼此的情绪港湾' }, { letter: 'C', text: '默契十足，不用多说就能懂彼此' }, { letter: 'D', text: '长久亲密，不管多久都不会变淡' }] },
+],
+},
+'D': {
+baseName: '朋友',
+questions: [
+{ id: 2, title: '第2题：和普通朋友相处，你更在意？', options: [{ letter: 'A', text: '相处轻松自在，没有任何压力' }, { letter: 'B', text: '彼此尊重分寸，不越界不打扰' }, { letter: 'C', text: '三观契合合拍，有共同话题可聊' }, { letter: 'D', text: '相处舒服愉悦，不会产生矛盾' }] },
+{ id: 3, title: '第3题：朋友遇到困难，你会？', options: [{ letter: 'A', text: '力所能及帮忙，尽自己所能相助' }, { letter: 'B', text: '给予鼓励支持，做对方的精神后盾' }, { letter: 'C', text: '保持适当距离，不主动插手不越界' }, { letter: 'D', text: '倾听对方烦恼，给出客观中肯建议' }] },
+{ id: 4, title: '第4题：和朋友意见不合时，你会？', options: [{ letter: 'A', text: '尊重彼此观点，不强行说服对方' }, { letter: 'B', text: '平和沟通交流，求同存异友好相处' }, { letter: 'C', text: '避开争议话题，维持彼此友好关系' }, { letter: 'D', text: '理性分析问题，找到折中相处方式' }] },
+{ id: 5, title: '第5题：你理想中的朋友关系是？', options: [{ letter: 'A', text: '淡而不散，偶尔联系也不会生疏' }, { letter: 'B', text: '轻松同频，相处起来毫无拘束感' }, { letter: 'C', text: '互相欣赏，彼此认可对方的闪光点' }, { letter: 'D', text: '适度陪伴，不远不近相处最舒服' }] },
+{ id: 6, title: '第6题：你和朋友的相处频率是？', options: [{ letter: 'A', text: '偶尔联系聚会，保持友好距离' }, { letter: 'B', text: '日常简单互动，分享生活小事' }, { letter: 'C', text: '志趣相投时相聚，随性而处' }, { letter: 'D', text: '有事联系无事不扰，相处淡然' }] },
+{ id: 7, title: '第7题：朋友做什么会让你觉得很加分？', options: [{ letter: 'A', text: '懂分寸知边界，不随意打探隐私' }, { letter: 'B', text: '真诚友善相待，相处起来很舒服' }, { letter: 'C', text: '靠谱守信，答应的事情能做到' }, { letter: 'D', text: '包容随和，不会斤斤计较小事情' }] },
+{ id: 8, title: '第8题：你希望和朋友的关系保持？', options: [{ letter: 'A', text: '长久淡然，舒服且不刻意' }, { letter: 'B', text: '轻松愉悦，没有矛盾与负担' }, { letter: 'C', text: '互相尊重，彼此理解不勉强' }, { letter: 'D', text: '淡交若水，真诚且长久' }] },
+],
+},
+'E': {
+baseName: '亲人',
+questions: [
+{ id: 2, title: '第2题：你觉得亲人之间最珍贵的是？', options: [{ letter: 'A', text: '无条件的陪伴与守护' }, { letter: 'B', text: '血脉相连的牵挂与惦记' }, { letter: 'C', text: '永远包容的偏爱与兜底' }, { letter: 'D', text: '平淡烟火里的温暖与安心' }] },
+{ id: 3, title: '第3题：和亲人产生矛盾，你会？', options: [{ letter: 'A', text: '主动低头认错，顾及亲情和睦' }, { letter: 'B', text: '耐心沟通交流，说出自己的想法' }, { letter: 'C', text: '默默释怀原谅，毕竟是血脉至亲' }, { letter: 'D', text: '用行动表达歉意，修复彼此关系' }] },
+{ id: 4, title: '第4题：你和亲人的日常相处氛围是？', options: [{ letter: 'A', text: '热闹温馨，充满烟火气息' }, { letter: 'B', text: '安静平和，平淡陪伴就很温暖' }, { letter: 'C', text: '互相牵挂，不善表达却心系彼此' }, { letter: 'D', text: '轻松随意，打打闹闹也很亲密' }] },
+{ id: 5, title: '第5题：在外打拼/学习时，对亲人的感觉是？', options: [{ letter: 'A', text: '永远的牵挂，是心灵的归宿' }, { letter: 'B', text: '坚实的后盾，遇事最安心的依靠' }, { letter: 'C', text: '温暖的港湾，能治愈所有疲惫' }, { letter: 'D', text: '默默的惦念，藏在心底的温暖' }] },
+{ id: 6, title: '第6题：你最看重亲人之间的？', options: [{ letter: 'A', text: '毫无保留的信任与坦诚' }, { letter: 'B', text: '长久稳定的陪伴与守护' }, { letter: 'C', text: '无条件的包容与理解' }, { letter: 'D', text: '发自内心的关爱与惦记' }] },
+{ id: 7, title: '第7题：亲人对你来说，意味着？', options: [{ letter: 'A', text: '无论如何都不会离开的人' }, { letter: 'B', text: '不求回报全心付出的人' }, { letter: 'C', text: '最懂自己、包容自己的人' }, { letter: 'D', text: '一生都割舍不断的温暖羁绊' }] },
+{ id: 8, title: '第8题：你希望和亲人之间多一些？', options: [{ letter: 'A', text: '暖心的沟通与陪伴' }, { letter: 'B', text: '互相的理解与包容' }, { letter: 'C', text: '直白的爱意与表达' }, { letter: 'D', text: '安稳的相守与温暖' }] },
+],
+},
+'F': {
+baseName: '师生',
+questions: [
+{ id: 2, title: '第2题：你理想中的师生关系是？', options: [{ letter: 'A', text: '亦师亦友，相处轻松无距离' }, { letter: 'B', text: '尊师重道，严谨认真又不失温暖' }, { letter: 'C', text: '引导陪伴，助力自己成长进步' }, { letter: 'D', text: '互相尊重，张弛有度相处融洽' }] },
+{ id: 3, title: '第3题：老师对你的教导方式，你更喜欢？', options: [{ letter: 'A', text: '严格要求，助力自己变得更优秀' }, { letter: 'B', text: '温柔引导，耐心讲解悉心开导' }, { letter: 'C', text: '趣味互动，轻松学习快乐成长' }, { letter: 'D', text: '默默守护，放手让自己尝试成长' }] },
+{ id: 4, title: '第4题：和老师相处时，你的状态是？', options: [{ letter: 'A', text: '尊敬又亲近，敢于表达自己想法' }, { letter: 'B', text: '乖巧又认真，虚心接受所有教导' }, { letter: 'C', text: '轻松又活泼，和老师趣味互动' }, { letter: 'D', text: '沉稳又懂事，懂得感恩老师付出' }] },
+{ id: 5, title: '第5题：老师最打动你的一点是？', options: [{ letter: 'A', text: '无私奉献，全心全意为学生付出' }, { letter: 'B', text: '悉心引导，帮自己找准人生方向' }, { letter: 'C', text: '温柔包容，接纳自己的不足与失误' }, { letter: 'D', text: '靠谱守护，为自己的成长保驾护航' }] },
+{ id: 6, title: '第6题：你对老师的情感更多是？', options: [{ letter: 'A', text: '深深的尊敬与崇拜' }, { letter: 'B', text: '满满的感激与依赖' }, { letter: 'C', text: '亲近的喜爱与信任' }, { letter: 'D', text: '由衷的认可与感恩' }] },
+{ id: 7, title: '第7题：师生之间最需要的是？', options: [{ letter: 'A', text: '互相尊重与理解' }, { letter: 'B', text: '真诚沟通与信任' }, { letter: 'C', text: '用心引导与配合' }, { letter: 'D', text: '分寸感与责任感' }] },
+{ id: 8, title: '第8题：你希望老师对你？', options: [{ letter: 'A', text: '严格要求，助力自己成长' }, { letter: 'B', text: '温柔呵护，给予足够鼓励' }, { letter: 'C', text: '适度放手，给予成长空间' }, { letter: 'D', text: '悉心教导，毫无保留付出' }] },
+],
+},
+};
+
+const question9 = {
+id: 9,
+title: '第9题：情感小料·希望彼此多些什么（多选3项）',
+isMulti: true,
+maxSelect: 3,
+options: [
+{ letter: 'A', text: '陪伴' }, { letter: 'B', text: '信任' }, { letter: 'C', text: '默契' },
+{ letter: 'D', text: '倾听' }, { letter: 'E', text: '支持' }, { letter: 'F', text: '稳定' },
+{ letter: 'G', text: '亲密' }, { letter: 'H', text: '分寸' }, { letter: 'I', text: '坦诚' },
+{ letter: 'J', text: '分享' }, { letter: 'K', text: '包容' }, { letter: 'L', text: '耐心' },
+],
+};
+
+const resultTags = {
+'A': {
+series: 'LVE',
+tags: {
+1: { name: '炽恋同频', animal: '赤狐', emoji: '🦊', flavor: '植物油', bgGradient: 'linear-gradient(135deg, #fff0e8 0%, #ffe0cc 30%, #ffccaa 60%, #ffe8d8 100%)', bgColor: '#fdf0e6', accentColor: '#d4452a', circleBg: 'radial-gradient(circle at 40% 35%, #fff5f0 0%, #ffb899 40%, #e87850 100%)', desc: '热烈如火，双向奔赴。你在感情中追求浓烈的爱意与亲密的互动，像赤狐一样热情而忠诚。植物油般的纯粹，正如你不加修饰的真心。' },
+2: { name: '灵犀守伴', animal: '白鸳', emoji: '🕊️', flavor: '海盐', bgGradient: 'linear-gradient(135deg, #f5f9fc 0%, #e8f2f8 30%, #dceef5 60%, #f0f7fa 100%)', bgColor: '#f2f7fa', accentColor: '#5b8ca8', circleBg: 'radial-gradient(circle at 40% 35%, #fff 0%, #c8dff0 40%, #8ab8d4 100%)', desc: '灵犀相通，默契相守。你向往灵魂契合的爱情，无需多言便能懂彼此。海盐般清新淡雅，细水长流中藏着最深的眷恋。' },
+3: { name: '欢怼温藏', animal: '奶豹', emoji: '🐆', flavor: '土豆', bgGradient: 'linear-gradient(135deg, #fffdf5 0%, #fff8e0 30%, #ffecc0 60%, #fff9e8 100%)', bgColor: '#fefbec', accentColor: '#c8943e', circleBg: 'radial-gradient(circle at 40% 35%, #fffefa 0%, #f5d890 40%, #d4a850 100%)', desc: '欢喜冤家，越闹越爱。打打闹闹中藏着温柔与宠溺，像奶豹一样外表活泼内心柔软。土豆般朴实温暖，是最接地气的甜蜜。' },
+4: { name: '浅岸安守', animal: '水豚', emoji: '🦫', flavor: '土豆', bgGradient: 'linear-gradient(135deg, #f5faf8 0%, #e8f5f0 30%, #d8efe8 60%, #f0f8f5 100%)', bgColor: '#f0f7f4', accentColor: '#6b9e85', circleBg: 'radial-gradient(circle at 40% 35%, #fff 0%, #c8e8d8 40%, #88b8a0 100%)', desc: '温柔包容，情绪稳定。你像水豚一样安然自若，用温和的力量守护爱情。浅岸安守，平淡中见真情，包容中显深爱。' },
+},
+},
+'B': {
+series: 'FRI',
+tags: {
+1: { name: '光途同往', animal: '灵狼', emoji: '🐺', flavor: '海盐', bgGradient: 'linear-gradient(135deg, #f5f6f9 0%, #e8ecf4 30%, #dce2f0 60%, #f0f2f8 100%)', bgColor: '#f0f2f6', accentColor: '#5a6d8a', circleBg: 'radial-gradient(circle at 40% 35%, #fff 0%, #c0ccdd 40%, #7a8ea8 100%)', desc: '并肩同行，热血义气。你如灵狼般忠诚可靠，关键时刻永远站在兄弟身旁。海盐般清爽利落，情义二字重如山。' },
+2: { name: '嬉宠同欢', animal: '蜜袋鼬', emoji: '🐾', flavor: '植物油', bgGradient: 'linear-gradient(135deg, #fff5f0 0%, #ffe8d8 30%, #ffdcc5 60%, #fff0e5 100%)', bgColor: '#fef5ee', accentColor: '#d4785a', circleBg: 'radial-gradient(circle at 40% 35%, #fff8f5 0%, #f0c0a0 40%, #d89070 100%)', desc: '嬉闹宠溺，热烈亲密。你像蜜袋鼬一样黏人可爱，兄弟情谊中充满温暖互动。植物油般纯粹浓郁，情谊深厚不掺杂质。' },
+3: { name: '百趣搭子', animal: '柯尔鸭', emoji: '🦆', flavor: '土豆', bgGradient: 'linear-gradient(90deg, #fffef8 0%, #fffbe0 30%, #fff5c0 60%, #fffef0 100%)', bgColor: '#fefdf5', accentColor: '#c8a030', circleBg: 'radial-gradient(circle at 40% 35%, #fffefa 0%, #f5e090 40%, #d4b850 100%)', desc: '快乐搭子，百趣同游。你像柯尔鸭一样活泼有趣，和兄弟在一起总有玩不完的乐子。土豆般朴实自在，是最轻松的陪伴。' },
+4: { name: '软底温承', animal: '垂耳兔', emoji: '🐰', flavor: '土豆', bgGradient: 'linear-gradient(135deg, #fffdf9 0%, #fff5e8 30%, #ffe8d0 60%, #fff8f0 100%)', bgColor: '#fef9f2', accentColor: '#d4a878', circleBg: 'radial-gradient(circle at 40% 35%, #fffefa 0%, #f0d8b8 40%, #d4b088 100%)', desc: '温柔兜底，软底温承。你像垂耳兔一样柔软包容，默默做兄弟最温暖的后盾。土豆般温厚踏实，是最安心的存在。' },
+},
+},
+'C': {
+series: 'FRI',
+tags: {
+1: { name: '光途同往', animal: '灵狼', emoji: '🐺', flavor: '海盐', bgGradient: 'linear-gradient(135deg, #f5f6f9 0%, #e8ecf4 30%, #dce2f0 60%, #f0f2f8 100%)', bgColor: '#f0f2f6', accentColor: '#5a6d8a', circleBg: 'radial-gradient(circle at 40% 35%, #fff 0%, #c0ccdd 40%, #7a8ea8 100%)', desc: '光途同往，彼此照亮。你如灵狼般忠诚可靠，闺蜜情谊坚不可摧。海盐般清爽纯粹，是彼此最坚实的依靠。' },
+2: { name: '嬉宠同欢', animal: '蜜袋鼬', emoji: '🐾', flavor: '植物油', bgGradient: 'linear-gradient(135deg, #fff5f0 0%, #ffe8d8 30%, #ffdcc5 60%, #fff0e5 100%)', bgColor: '#fef5ee', accentColor: '#d4785a', circleBg: 'radial-gradient(circle at 40% 35%, #fff8f5 0%, #f0c0a0 40%, #d89070 100%)', desc: '嬉闹宠溺，双向奔赴。你像蜜袋鼬一样黏人可爱，闺蜜之间满是甜蜜互动。植物油般浓郁纯粹，是最暖心的陪伴。' },
+3: { name: '百趣搭子', animal: '柯尔鸭', emoji: '🦆', flavor: '土豆', bgGradient: 'linear-gradient(90deg, #fffef8 0%, #fffbe0 30%, #fff5c0 60%, #fffef0 100%)', bgColor: '#fefdf5', accentColor: '#c8a030', circleBg: 'radial-gradient(circle at 40% 35%, #fffefa 0%, #f5e090 40%, #d4b850 100%)', desc: '百趣搭子，快乐加倍。你像柯尔鸭一样活力满满，和闺蜜在一起永远有趣。土豆般自在舒适，是最合拍的伙伴。' },
+4: { name: '软底温承', animal: '垂耳兔', emoji: '🐰', flavor: '土豆', bgGradient: 'linear-gradient(135deg, #fffdf9 0%, #fff5e8 30%, #ffe8d0 60%, #fff8f0 100%)', bgColor: '#fef9f2', accentColor: '#d4a878', circleBg: 'radial-gradient(circle at 40% 35%, #fffefa 0%, #f0d8b8 40%, #d4b088 100%)', desc: '温柔包容，软底温承。你像垂耳兔一样柔软治愈，给闺蜜最温暖的港湾。土豆般温厚细腻，是最治愈的存在。' },
+},
+},
+'D': {
+series: 'PAL',
+tags: {
+1: { name: '松伴同观', animal: '云雀', emoji: '🐦', flavor: '海盐', bgGradient: 'linear-gradient(180deg, #f5f9fd 0%, #e8f2fa 30%, #dcecf6 60%, #f0f6fb 100%)', bgColor: '#f2f6fa', accentColor: '#6b90b0', circleBg: 'radial-gradient(circle at 40% 35%, #fff 0%, #c8ddf0 40%, #90b8d4 100%)', desc: '松伴同观，轻松自在。你如云雀般自由灵动，朋友相处贵在舒服。海盐般清新淡雅，不远不近刚刚好的距离。' },
+2: { name: '知契相携', animal: '灵鹿', emoji: '🦌', flavor: '土豆', bgGradient: 'linear-gradient(135deg, #f6faf5 0%, #e8f4e8 30%, #d8ecd5 60%, #f0f7ef 100%)', bgColor: '#f2f7f1', accentColor: '#6b9e70', circleBg: 'radial-gradient(circle at 40% 35%, #fff 0%, #c8e0c0 40%, #88b080 100%)', desc: '知契相携，默契同频。你如灵鹿般通透睿智，与朋友心灵相通。土豆般自然纯粹，是灵魂层面的相知相惜。' },
+3: { name: '趣途同游', animal: '小熊猫', emoji: '🦝', flavor: '植物油', bgGradient: 'linear-gradient(135deg, #fff8f3 0%, #ffe8d8 30%, #ffd5bb 60%, #fff0e5 100%)', bgColor: '#fef6ef', accentColor: '#d47840', circleBg: 'radial-gradient(circle at 40% 35%, #fffaf5 0%, #f0c098 40%, #d89060 100%)', desc: '趣途同游，快乐玩伴。你如小熊猫般活泼可爱，和朋友在一起总有新奇乐趣。植物油般浓郁温暖，是充满活力的陪伴。' },
+4: { name: '淡契相扶', animal: '夜枭', emoji: '🦉', flavor: '海盐土豆', bgGradient: 'linear-gradient(135deg, #f4f4f8 0%, #e6e8f2 30%, #d8dcec 60%, #f0f2f6 100%)', bgColor: '#eff0f5', accentColor: '#5a5e78', circleBg: 'radial-gradient(circle at 40% 35%, #fafaff 0%, #c8c8d8 40%, #8888a0 100%)', desc: '淡契相扶，沉稳可靠。你如夜枭般淡定从容，朋友之间淡然却真诚。海盐土豆的复合风味，平淡中藏着深厚底蕴。' },
+},
+},
+'E': {
+series: 'FAM',
+tags: {
+1: { name: '暖隅归栖', animal: '家燕', emoji: '🐦', flavor: '土豆', bgGradient: 'linear-gradient(135deg, #fffdf6 0%, #fff8e0 30%, #ffefc0 60%, #fff9e8 100%)', bgColor: '#fefcf4', accentColor: '#c89840', circleBg: 'radial-gradient(circle at 40% 35%, #fffefa 0%, #f0d898 40%, #d4b060 100%)', desc: '暖隅归栖，烟火温暖。你如家燕般眷恋家的温度，亲情是你最安心的归宿。土豆般朴实温暖，是人间最踏实的幸福。' },
+2: { name: '脉契相守', animal: '丹顶鹤', emoji: '🦩', flavor: '海盐', bgGradient: 'linear-gradient(135deg, #fafafc 0%, #f0f2f8 30%, #e8ecf4 60%, #f5f6fa 100%)', bgColor: '#f5f6f9', accentColor: '#8a6b80', circleBg: 'radial-gradient(circle at 40% 35%, #fff 0%, #e0d8e8 40%, #b0a0b8 100%)', desc: '脉契相守，血脉相连。你如丹顶鹤般优雅深情，亲情是融入骨血的默契。海盐般纯净悠远，是生命中最深的羁绊。' },
+3: { name: '烟火同暖', animal: '小橘猫', emoji: '🐱', flavor: '植物油', bgGradient: 'linear-gradient(135deg, #fff8f2 0%, #ffe8d5 30%, #ffd4b8 60%, #fff0e2 100%)', bgColor: '#fef6ee', accentColor: '#e08850', circleBg: 'radial-gradient(circle at 40% 35%, #fffaf5 0%, #f5c098 40%, #d89868 100%)', desc: '烟火同暖，热闹温馨。你如小橘猫般黏人可爱，家中充满欢声笑语。植物油般浓郁醇厚，是热气腾腾的幸福日常。' },
+4: { name: '沉护安隅', animal: '巨龟', emoji: '🐢', flavor: '海盐土豆', bgGradient: 'linear-gradient(135deg, #f4f6f7 0%, #e6ecf0 30%, #d8e2e8 60%, #f0f4f6 100%)', bgColor: '#eef2f4', accentColor: '#5a7078', circleBg: 'radial-gradient(circle at 40% 35%, #fafcfa 0%, #c0d0d4 40%, #88a0a8 100%)', desc: '沉护安隅，稳重如山。你如巨龟般沉稳可靠，默默守护着家的安宁。海盐土豆的复合层次，是深沉而持久的守护力量。' },
+},
+},
+'F': {
+series: 'TSM',
+tags: {
+1: { name: '引途燃光', animal: '雄鹰', emoji: '🦅', flavor: '植物油', bgGradient: 'linear-gradient(180deg, #fffaf3 0%, #fff0d8 30%, #ffe4b8 60%, #fff8e8 100%)', bgColor: '#fef8ef', accentColor: '#c87830', circleBg: 'radial-gradient(circle at 40% 35%, #fffdf5 0%, #f0c880 40%, #d8a050 100%)', desc: '引途燃光，引领成长。你如雄鹰般志向高远，在老师的引领下翱翔天际。植物油般纯粹明亮，是照亮前路的光芒。' },
+2: { name: '趣契同萌', animal: '小浣熊', emoji: '🦝', flavor: '土豆', bgGradient: 'linear-gradient(135deg, #fdfaf5 0%, #f8f0e0 30%, #f0e0c0 60%, #faf5e8 100%)', bgColor: '#faf6ee', accentColor: '#b89868', circleBg: 'radial-gradient(circle at 40% 35%, #fffdf8 0%, #e8d4b0 40%, #c8a878 100%)', desc: '趣契同萌，亦师亦友。你如小浣熊般机灵可爱，师生之间轻松有趣。土豆般自然温暖，是最美好的教学相长。' },
+3: { name: '度契知引', animal: '白泽', emoji: '🦄', flavor: '海盐', bgGradient: 'linear-gradient(135deg, #f8fafe 0%, #eef2f8 30%, #e4eaf4 60%, #f4f6fb 100%)', bgColor: '#f4f6fa', accentColor: '#6a80a0', circleBg: 'radial-gradient(circle at 40% 35%, #fff 0%, #d0d8e8 40%, #98a8c0 100%)', desc: '度契知引，智慧通达。你如白泽般睿智明理，师生之间分寸得当默契十足。海盐般清透深远，是知性的引导与陪伴。' },
+4: { name: '诺赴同往', animal: '耕牛', emoji: '🐂', flavor: '土豆', bgGradient: 'linear-gradient(135deg, #faf8f4 0%, #f2ece0 30%, #e8e0d0 60%, #f6f2e8 100%)', bgColor: '#f6f2ea', accentColor: '#8a7060', circleBg: 'radial-gradient(circle at 40% 35%, #fffdf8 0%, #e0d0b8 40%, #b89878 100%)', desc: '诺赴同往，踏实奉献。你如耕牛般勤恳踏实，师生情谊在默默付出中深厚。土豆般质朴厚重，是最可靠的教育陪伴。' },
+},
+},
+};
+
+// ==================== 全局状态 ====================
+let currentBase = null;
+let currentQuestionIndex = 0;
+let totalQuestionsInFlow = 9;
+let answers = {};
+let selectedMulti = {};
+let userIdentityCode = '';
+
+// DOM引用
+const pageStart = document.getElementById('pageStart');
+const pageTest = document.getElementById('pageTest');
+const pageResult = document.getElementById('pageResult');
+const progressBar = document.getElementById('progressBar');
+const progressText = document.getElementById('progressText');
+const questionLabel = document.getElementById('questionLabel');
+const questionTitle = document.getElementById('questionTitle');
+const optionsList = document.getElementById('optionsList');
+const multiHint = document.getElementById('multiHint');
+const btnPrev = document.getElementById('btnPrev');
+const btnNext = document.getElementById('btnNext');
+const toast = document.getElementById('toast');
+const confettiContainer = document.getElementById('confettiContainer');
+
+function showPage(page) {
+[pageStart, pageTest, pageResult].forEach(p => p.classList.remove('active'));
+page.classList.add('active');
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showToast(msg) {
+toast.textContent = msg;
+toast.classList.add('show');
+clearTimeout(toast._timeout);
+toast._timeout = setTimeout(() => { toast.classList.remove('show'); }, 1800);
+}
+
+function updateProgress(current, total) {
+const pct = Math.round((current / total) * 100);
+progressBar.style.width = pct + '%';
+progressText.textContent = current + '/' + total;
+}
+
+// ==================== 开始测试 ====================
+window.startTest = function() {
+currentBase = null;
+currentQuestionIndex = 0;
+answers = {};
+selectedMulti = {};
+userIdentityCode = '';
+showPage(pageTest);
+renderQuestion1();
+updateProgress(1, 9);
+btnPrev.style.display = 'none';
+btnNext.disabled = true;
+btnNext.textContent = '下一题 →';
+};
+
+// ==================== 渲染第1题 ====================
+function renderQuestion1() {
+questionLabel.textContent = '第1题 · 关系基底';
+questionTitle.textContent = question1.title;
+multiHint.style.display = 'none';
+optionsList.innerHTML = '';
+question1.options.forEach(opt => {
+const btn = document.createElement('button');
+btn.className = 'option-btn';
+btn.innerHTML = `<span class="option-letter">${opt.letter}</span><span class="option-text">${opt.text}</span>`;
+btn.addEventListener('click', () => {
+optionsList.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+btn.classList.add('selected');
+answers[1] = opt.letter;
+btnNext.disabled = false;
+});
+if (answers[1] === opt.letter) btn.classList.add('selected');
+optionsList.appendChild(btn);
+});
+if (answers[1]) btnNext.disabled = false;
+else btnNext.disabled = true;
+btnPrev.style.display = 'none';
+}
+
+// ==================== 渲染专属题目（第2-8题） ====================
+function renderBaseQuestion(idx) {
+const baseKey = currentBase;
+const qData = baseQuestionsData[baseKey].questions[idx];
+questionLabel.textContent = '第' + qData.id + '题';
+questionTitle.textContent = qData.title;
+multiHint.style.display = 'none';
+optionsList.innerHTML = '';
+qData.options.forEach(opt => {
+const btn = document.createElement('button');
+btn.className = 'option-btn';
+btn.innerHTML = `<span class="option-letter">${opt.letter}</span><span class="option-text">${opt.text}</span>`;
+btn.addEventListener('click', () => {
+optionsList.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+btn.classList.add('selected');
+answers[qData.id] = opt.letter;
+btnNext.disabled = false;
+});
+if (answers[qData.id] === opt.letter) btn.classList.add('selected');
+optionsList.appendChild(btn);
+});
+if (answers[qData.id]) btnNext.disabled = false;
+else btnNext.disabled = true;
+btnPrev.style.display = 'flex';
+const overallQNum = idx + 2;
+updateProgress(overallQNum, 9);
+}
+
+// ==================== 渲染第9题（多选） ====================
+function renderQuestion9() {
+questionLabel.textContent = '第9题 · 情感小料';
+questionLabel.classList.add('q9-label');
+questionTitle.textContent = question9.title;
+multiHint.style.display = 'block';
+optionsList.innerHTML = '';
+selectedMulti = {};
+if (answers[9] && Array.isArray(answers[9])) {
+answers[9].forEach(l => { selectedMulti[l] = true; });
+}
+question9.options.forEach(opt => {
+const btn = document.createElement('button');
+btn.className = 'option-btn';
+if (selectedMulti[opt.letter]) btn.classList.add('multi-selected');
+btn.innerHTML = `<span class="option-letter">${opt.letter}</span><span class="option-text">${opt.text}</span>`;
+btn.addEventListener('click', () => {
+if (selectedMulti[opt.letter]) {
+delete selectedMulti[opt.letter];
+btn.classList.remove('multi-selected');
+} else {
+if (Object.keys(selectedMulti).length >= question9.maxSelect) {
+showToast('最多选择3项哦~');
+return;
+}
+selectedMulti[opt.letter] = true;
+btn.classList.add('multi-selected');
+}
+const selectedLetters = Object.keys(selectedMulti);
+answers[9] = selectedLetters;
+if (selectedLetters.length === question9.maxSelect) {
+btnNext.disabled = false;
+} else {
+btnNext.disabled = true;
+}
+});
+optionsList.appendChild(btn);
+});
+if (answers[9] && Array.isArray(answers[9]) && answers[9].length === question9.maxSelect) {
+btnNext.disabled = false;
+} else {
+btnNext.disabled = true;
+}
+btnPrev.style.display = 'flex';
+btnNext.textContent = '查看结果 🎉';
+updateProgress(9, 9);
+}
+
+// ==================== 导航 ====================
+window.nextQuestion = function() {
+if (currentBase === null) {
+if (!answers[1]) {
+showToast('请先选择一个关系基底~');
+return;
+}
+currentBase = answers[1];
+currentQuestionIndex = 0;
+renderBaseQuestion(0);
+btnPrev.style.display = 'flex';
+btnNext.textContent = '下一题 →';
+updateProgress(2, 9);
+} else if (currentQuestionIndex < 6) {
+const qId = currentQuestionIndex + 2;
+if (!answers[qId]) {
+showToast('请先选择一个选项~');
+return;
+}
+currentQuestionIndex++;
+renderBaseQuestion(currentQuestionIndex);
+updateProgress(currentQuestionIndex + 2, 9);
+btnNext.textContent = '下一题 →';
+} else if (currentQuestionIndex === 6) {
+const qId = 8;
+if (!answers[qId]) {
+showToast('请先选择一个选项~');
+return;
+}
+currentQuestionIndex = 7;
+renderQuestion9();
+btnNext.textContent = '查看结果 🎉';
+} else if (currentQuestionIndex === 7) {
+if (!answers[9] || answers[9].length !== question9.maxSelect) {
+showToast('请选择恰好3项情感小料~');
+return;
+}
+calculateAndShowResult();
+}
+};
+
+window.prevQuestion = function() {
+if (currentBase === null) return;
+if (currentQuestionIndex === 0) {
+currentBase = null;
+currentQuestionIndex = 0;
+answers[1] = null;
+renderQuestion1();
+btnPrev.style.display = 'none';
+btnNext.textContent = '下一题 →';
+btnNext.disabled = !answers[1];
+updateProgress(1, 9);
+questionLabel.classList.remove('q9-label');
+} else if (currentQuestionIndex <= 6) {
+currentQuestionIndex--;
+renderBaseQuestion(currentQuestionIndex);
+btnNext.textContent = '下一题 →';
+updateProgress(currentQuestionIndex + 2, 9);
+questionLabel.classList.remove('q9-label');
+} else if (currentQuestionIndex === 7) {
+currentQuestionIndex = 6;
+renderBaseQuestion(6);
+btnNext.textContent = '下一题 →';
+updateProgress(8, 9);
+questionLabel.classList.remove('q9-label');
+multiHint.style.display = 'none';
+}
+};
+
+// ==================== 计算结果 ====================
+function calculateAndShowResult() {
+const baseKey = currentBase;
+const typeCounts = { 1: 0, 2: 0, 3: 0, 4: 0 };
+for (let qId = 2; qId <= 8; qId++) {
+const letter = answers[qId];
+if (letter) {
+const typeMap = { 'A': 1, 'B': 2, 'C': 3, 'D': 4 };
+const t = typeMap[letter] || 4;
+typeCounts[t]++;
+}
+}
+let maxCount = -1;
+let dominantTypes = [];
+for (let t = 1; t <= 4; t++) {
+if (typeCounts[t] > maxCount) {
+maxCount = typeCounts[t];
+dominantTypes = [t];
+} else if (typeCounts[t] === maxCount) {
+dominantTypes.push(t);
+}
+}
+let finalType = dominantTypes[0];
+if (dominantTypes.length > 1 && answers[9]) {
+const sels = answers[9];
+const group1 = ['A', 'G', 'J'];
+const group2 = ['B', 'C', 'D', 'I'];
+const group3 = ['H'];
+const group4 = ['F', 'K', 'L'];
+let scoreBias = { 1: 0, 2: 0, 3: 0, 4: 0 };
+sels.forEach(s => {
+if (group1.includes(s)) scoreBias[1]++;
+if (group2.includes(s)) scoreBias[2]++;
+if (group3.includes(s)) scoreBias[3]++;
+if (group4.includes(s)) scoreBias[4]++;
+if (s === 'E') scoreBias[1]++;
+});
+let bestBias = -1;
+for (const t of dominantTypes) {
+if (scoreBias[t] > bestBias) {
+bestBias = scoreBias[t];
+finalType = t;
+}
+}
+}
+const tagData = resultTags[baseKey].tags[finalType];
+const seriesName = resultTags[baseKey].series;
+userIdentityCode = generateIdentityCode(baseKey, finalType);
+showResultPage(baseKey, finalType, tagData, seriesName);
+}
+
+function generateIdentityCode(baseKey, finalType) {
+const now = new Date();
+const y = now.getFullYear();
+const m = String(now.getMonth() + 1).padStart(2, '0');
+const d = String(now.getDate()).padStart(2, '0');
+const h = String(now.getHours()).padStart(2, '0');
+const min = String(now.getMinutes()).padStart(2, '0');
+const s = String(now.getSeconds()).padStart(2, '0');
+const ms = String(now.getMilliseconds()).padStart(3, '0');
+const randChars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+let rand = '';
+for (let i = 0; i < 4; i++) {
+rand += randChars.charAt(Math.floor(Math.random() * randChars.length));
+}
+const baseMap = { 'A': 'LV', 'B': 'BR', 'C': 'BS', 'D': 'FR', 'E': 'FM', 'F': 'TS' };
+const prefix = baseMap[baseKey] || 'XX';
+return 'JA' + prefix + y + m + d + h + min + s + ms + rand;
+}
+
+function showResultPage(baseKey, finalType, tagData, seriesName) {
+showPage(pageResult);
+document.getElementById('appContainer').style.background = tagData.bgGradient;
+document.body.style.background = tagData.bgGradient;
+const animalCircle = document.getElementById('resultAnimalCircle');
+animalCircle.style.background = tagData.circleBg;
+animalCircle.textContent = tagData.emoji;
+document.getElementById('resultBadge').textContent = seriesName + '系列 · ' + tagData.flavor + '口味';
+document.getElementById('resultLabelName').textContent = tagData.name + ' · ' + tagData.animal;
+document.getElementById('resultFlavor').textContent = '🥔 可比克简薯片 · ' + tagData.flavor + ' | 0添加的薯片 0杂质的爱';
+document.getElementById('resultDescCard').innerHTML = '<strong>你的情感配方：</strong>' + tagData.desc;
+document.getElementById('idCode').textContent = userIdentityCode;
+spawnConfetti(tagData.accentColor);
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ==================== 纸屑动画 ====================
+function spawnConfetti(accentColor) {
+confettiContainer.innerHTML = '';
+const colors = [accentColor, '#f5a65b', '#ffcc80', '#ffe0b2', '#ffd54f', '#ffab40', '#fff176', '#ff8a65'];
+for (let i = 0; i < 60; i++) {
+const piece = document.createElement('div');
+piece.className = 'confetti-piece';
+piece.style.left = Math.random() * 100 + '%';
+piece.style.top = -(Math.random() * 40 + 10) + 'px';
+piece.style.width = (Math.random() * 10 + 6) + 'px';
+piece.style.height = (Math.random() * 10 + 6) + 'px';
+piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+piece.style.animationDuration = (Math.random() * 2.5 + 2) + 's';
+piece.style.animationDelay = Math.random() * 1.5 + 's';
+piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '3px';
+confettiContainer.appendChild(piece);
+}
+setTimeout(() => { confettiContainer.innerHTML = ''; }, 4500);
+}
+
+// ==================== 重新测试 ====================
+window.retryTest = function() {
+document.body.style.background = '';
+document.getElementById('appContainer').style.background = '';
+confettiContainer.innerHTML = '';
+currentBase = null;
+currentQuestionIndex = 0;
+answers = {};
+selectedMulti = {};
+userIdentityCode = '';
+questionLabel.classList.remove('q9-label');
+multiHint.style.display = 'none';
+showPage(pageStart);
+updateProgress(1, 9);
+btnNext.textContent = '下一题 →';
+btnNext.disabled = true;
+btnPrev.style.display = 'none';
+window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+// ==================== 初始化 ====================
+function init() {
+showPage(pageStart);
+updateProgress(1, 9);
+btnNext.disabled = true;
+btnPrev.style.display = 'none';
+document.body.style.background = '';
+document.getElementById('appContainer').style.background = '';
+}
+init();
+console.log('🥔 可比克简薯片 - 调配属于你的情感配方 H5 已就绪');
+console.log('📋 测试题目与文档完全一致 | 9道题 | 20种人格标签 | 唯一简爱身份编码');
+})();
+</script>
+</body>
+</html>
